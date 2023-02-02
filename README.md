@@ -58,8 +58,10 @@ Corosync - программный продукт, который позволя�
 Создание ВМ для д/з большая часть настройки хостов описана в Vagrantfile
 Получилась конфигурация по сервисам:
 ![img](https://github.com/smutosey/10-03-pacemaker/blob/main/img/03-3.png)
+
 Статус кластера на node-1:
 ![img](https://github.com/smutosey/10-03-pacemaker/blob/main/img/03-1.png)
+
 Статус кластера на node-2:
 ![img](https://github.com/smutosey/10-03-pacemaker/blob/main/img/03-2.png)
 
@@ -83,7 +85,7 @@ lvcreate --name drbd --size 1020M vg
 ```
 
 Конфигурация ресурса: /etc/drbd.d/wwwdata.res
-```json
+```
 resource wwwdata {
  protocol C;
  meta-disk internal;
@@ -122,6 +124,7 @@ mount /dev/drbd2 /mnt/www
 
 Запуск и синхронизация прошли успешно, статус drbd на мастер-ноде: 
 ![img](https://github.com/smutosey/10-03-pacemaker/blob/main/img/04-1.png)
+
 статус на слэйв-ноде: 
 ![img](https://github.com/smutosey/10-03-pacemaker/blob/main/img/04-2.png)
 
@@ -145,6 +148,7 @@ pcs cluster cib-push drbd_cfg --config
 
 В результате статус кластера и ресурсов:
 ![img](https://github.com/smutosey/10-03-pacemaker/blob/main/img/04-9.png)
+
 И статусы, если упала secondary-нода, например:
 ![img](https://github.com/smutosey/10-03-pacemaker/blob/main/img/04-8.png)
 
